@@ -1,0 +1,17 @@
+zerops:
+  - setup: prod
+    build:
+      base: nodejs@22
+      buildCommands:
+        - npm i
+        - npm run build
+        - mv node_modules{,.old} && mv package-lock.json{,.old}
+        - npm i --prod
+      deployFiles:
+        - ./node_modules
+        - ./dist
+        - package.json
+    run:
+      base: nodejs@22
+      start: npm start
+

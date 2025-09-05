@@ -1,1 +1,1 @@
-# nestjs-hello-world
+# Zerops Nest.js Hello World recipe app
