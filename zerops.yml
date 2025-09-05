@@ -1,0 +1,4 @@
+zerops:
+  - setup: prod
+    build:
+    run:
