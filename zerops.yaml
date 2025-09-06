@@ -14,7 +14,7 @@ zerops:
     run:
       base: nodejs@22
       ports:
-        - port: 3300
+        - port: 3000
           httpSupport: true
       start: npm run start:prod
 
