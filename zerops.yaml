@@ -12,10 +12,18 @@ zerops:
         - ./dist
         - package.json
     run:
+      base: nodejs@22
       ports:
         - port: 3300
           httpSupport: true
-          description: "Description of my port."
-          protocol: tcp
-      base: nodejs@22
       start: npm run start:prod
+
+  - setup: dev
+    build:
+      base: nodejs@22
+      buildCommands:
+        - npm i
+      deployFiles:
+        - ./
+    run:
+      start: zsc noop
