@@ -15,4 +15,47 @@ Simple default Nest.js app created with `nest new project-name`. Used within [Ne
 > If you've deployed the recipe with one-click, it used [this repository](https://github.com/zerops-recipe-apps/nestjs-hello-world-app) to deploy the app from. You can either use this repository as a template, or follow the guide on how to integrate similar setup to Zerops. If you want to more advanced examples, see all [Nest.js recipes](https://app.zerops.io/recipes?lf=nest-js) on Zerops.
 
 ### Adding zerops.yaml
+`zerops.yaml` is a file you place at the root of your repository, it tells Zerops how to build, deploy and run your application. 
+
+```yaml
+zerops:
+  # setups for production-like environments
+  # like stage and production
+  - setup: prod
+    # build runs on a separate container
+    build:
+      # base build image with basic tools
+      # preinstalled (npm, yarn, pm2 etc.)
+      base: nodejs@22
+      buildCommands:
+        # install dev dependencies
+        # and build the app
+        - npm i
+        - npm run build
+        # rename the dev dependencies
+        - mv node_modules{,.old} && mv package-lock.json{,.old}
+        # install only prod dependecies
+        - npm i --prod
+      # select which files should be deployed
+      deployFiles:
+        - ./node_modules
+        - ./dist
+        - package.json
+    run:
+      base: nodejs@22
+      ports:
+        - port: 3000
+          httpSupport: true
+      start: npm run start:prod
+
+  - setup: dev
+    build:
+      base: nodejs@22
+      buildCommands:
+        - npm i
+      deployFiles:
+        - ./
+    run:
+      start: zsc noop
+```
 
