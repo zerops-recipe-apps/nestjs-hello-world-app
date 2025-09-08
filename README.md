@@ -3,6 +3,7 @@
 Simple default Nest.js app created with `nest new project-name`. Used within [Nest.js Hello World recipe](https://app.zerops.io/recipes/nestjs-hello-world).
 
 ⬇️ **Full recipe page and deploy with one-click**
+
 [![Deploy on Zerops](https://github.com/zeropsio/recipe-shared-assets/blob/main/deploy-button/light/deploy-button.svg)](https://app.zerops.io/recipes/nestjs-hello-world?environment=small-production)
 
 ![nestjs](https://github.com/zeropsio/recipe-shared-assets/blob/main/covers/svg/cover-nestjs.svg)
