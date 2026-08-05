@@ -1,29 +1,52 @@
+# Minimal NestJS API on Zerops nodejs@22 — no external dependencies.
 zerops:
   - setup: prod
     build:
       base: nodejs@22
       buildCommands:
-        - npm i
+        # npm ci locks to package-lock.json for reproducible builds.
+        - npm ci
         - npm run build
-        - mv node_modules{,.old} && mv package-lock.json{,.old}
-        - npm i --prod
+        # Strip devDependencies after compilation — runtime needs prod deps only.
+        - npm prune --omit=dev
       deployFiles:
-        - ./node_modules
         - ./dist
-        - package.json
+        - ./node_modules
+        - ./package.json
+      cache:
+        - node_modules
+    deploy:
+      # L7 balancer waits until the new container responds before routing traffic.
+      readinessCheck:
+        httpGet:
+          port: 3000
+          path: /
     run:
       base: nodejs@22
       ports:
         - port: 3000
           httpSupport: true
-      start: npm run start:prod
+      start: node dist/main
+      healthCheck:
+        httpGet:
+          port: 3000
+          path: /
 
   - setup: dev
     build:
       base: nodejs@22
+      os: ubuntu
       buildCommands:
-        - npm i
-      deployFiles:
-        - ./
+        # npm install (not ci) — works without a lock file in fresh dev workspaces.
+        - npm install
+      deployFiles: ./
+      cache:
+        - node_modules
     run:
-      start: zsc noop
+      base: nodejs@22
+      os: ubuntu
+      ports:
+        - port: 3000
+          httpSupport: true
+      # Keep container idle — developer starts NestJS watch mode via SSH.
+      start: zsc noop --silent
