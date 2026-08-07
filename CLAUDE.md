@@ -1,18 +1,1 @@
-# nestjs-hello-world-app
-
-Default NestJS 11 app scaffolded with `nest new`, running on Zerops `nodejs@22` with no external dependencies — baseline NestJS starter.
-
-## Zerops service facts
-
-- HTTP port: `3000`
-- Siblings: —
-- Runtime base: `nodejs@22`
-
-## Zerops dev
-
-`setup: dev` idles on `zsc noop --silent`; the agent starts the dev server.
-
-- Dev command: `npm run start:dev`
-- In-container rebuild without deploy: `npm run build`
-
-**All platform operations (start/stop/status/logs of the dev server, deploy, env / scaling / storage / domains) go through the Zerops development workflow via `zcp` MCP tools. Don't shell out to `zcli`.**
+@AGENTS.md
