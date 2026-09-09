@@ -26,7 +26,7 @@ zerops:
     build:
       # base build image with basic tools
       # preinstalled (npm, yarn, pm2 etc.)
-      base: nodejs@22
+      base: nodejs@24
       buildCommands:
         # install dev dependencies
         # and build the app
@@ -42,7 +42,7 @@ zerops:
         - ./dist
         - package.json
     run:
-      base: nodejs@22
+      base: nodejs@24
       ports:
         - port: 3000
           httpSupport: true
@@ -50,7 +50,7 @@ zerops:
 
   - setup: dev
     build:
-      base: nodejs@22
+      base: nodejs@24
       buildCommands:
         - npm i
       deployFiles:

@@ -1,12 +1,12 @@
 # nestjs-hello-world-app
 
-Default NestJS 12 app scaffolded with `nest new`, running on Zerops `nodejs@22` with no external dependencies — baseline NestJS starter.
+Default NestJS 12 app scaffolded with `nest new`, running on Zerops `nodejs@24` with no external dependencies — baseline NestJS starter.
 
 ## Zerops service facts
 
 - HTTP port: `3000`
 - Siblings: —
-- Runtime base: `nodejs@22`
+- Runtime base: `nodejs@24`
 
 ## Zerops dev
 
@@ -19,5 +19,5 @@ Default NestJS 12 app scaffolded with `nest new`, running on Zerops `nodejs@22` 
 
 ## Notes
 
-- NestJS 12 requires Node.js **v22.12+** (or v20.19+); `engines.node` is set to `>=22.12.0`.
+- NestJS 12 requires Node.js **v22.12+** (or v20.19+); `engines.node` is set to `>=24.0.0`.
 - Prod build uses `npm ci`, `npm run build`, and `npm prune --omit=dev` — no manual node_modules swap.
