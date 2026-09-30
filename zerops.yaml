@@ -1,8 +1,8 @@
-# Minimal NestJS API on Zerops nodejs@22 — no external dependencies.
+# Minimal NestJS API on Zerops nodejs@24 — no external dependencies.
 zerops:
   - setup: prod
     build:
-      base: nodejs@22
+      base: nodejs@24
       buildCommands:
         # npm ci locks to package-lock.json for reproducible builds.
         - npm ci
@@ -22,7 +22,7 @@ zerops:
           port: 3000
           path: /
     run:
-      base: nodejs@22
+      base: nodejs@24
       ports:
         - port: 3000
           httpSupport: true
@@ -34,7 +34,7 @@ zerops:
 
   - setup: dev
     build:
-      base: nodejs@22
+      base: nodejs@24
       os: ubuntu
       buildCommands:
         # npm install (not ci) — works without a lock file in fresh dev workspaces.
@@ -43,7 +43,7 @@ zerops:
       cache:
         - node_modules
     run:
-      base: nodejs@22
+      base: nodejs@24
       os: ubuntu
       ports:
         - port: 3000
